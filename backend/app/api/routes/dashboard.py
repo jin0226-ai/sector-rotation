@@ -142,7 +142,10 @@ async def get_dashboard(db: Session = Depends(get_db)):
     score_trends = {
         "dates": [d.isoformat() for d in sorted_dates],
         "sectors": {
-            symbol: [score_by_sector[symbol].get(d) for d in sorted_dates]
+            symbol: {
+                "name": SECTOR_ETFS[symbol]["name"],
+                "scores": [score_by_sector[symbol].get(d) for d in sorted_dates]
+            }
             for symbol in SECTOR_ETFS.keys()
         },
     }
