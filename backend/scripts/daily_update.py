@@ -15,6 +15,11 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+# Load environment variables from .env file
+from dotenv import load_dotenv
+env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(env_path)
+
 # Setup logging
 log_dir = Path(__file__).parent / "logs"
 log_dir.mkdir(exist_ok=True)
